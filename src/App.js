@@ -1,0 +1,18 @@
+import React from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+
+import { Dashboard, LogIn, SignUp, NotFound } from './pages'
+import { DASHBOARD, LOG_IN, SIGN_UP } from './constants/routes'
+
+export default function App() {
+	return (
+		<BrowserRouter>
+			<Routes>
+				<Route path={DASHBOARD} element={<Dashboard />} />
+				<Route path={LOG_IN} element={<LogIn />} />
+				<Route path={SIGN_UP} element={<SignUp />} />
+				<Route path="*" element={<NotFound />} />
+			</Routes>
+		</BrowserRouter>
+	)
+}
