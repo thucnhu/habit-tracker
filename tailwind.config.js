@@ -1,12 +1,14 @@
 module.exports = {
 	content: ['./src/**/*.{js,jsx,ts,tsx}'],
 	theme: {
+		fontFamily: {
+			sans: ['Coustard'],
+		},
 		extend: {
 			colors: {
 				yellow: 'FFC30B',
-				'dark-egg': 'FFD79A',
-				'light-egg': 'FFDFA8',
 				green: '76BA16',
+				'green-darker': '66A103',
 				grey: 'BEBEBE',
 			},
 		},
