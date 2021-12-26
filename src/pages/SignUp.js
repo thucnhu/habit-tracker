@@ -5,7 +5,7 @@ import { LOG_IN } from '../constants/routes'
 
 export default function SignUp() {
 	return (
-		<div className='bg-yellow flex justify-center items-center h-screen'>
+		<div className='bg-brand-yellow flex justify-center items-center h-screen'>
 			<img
 				src='https://res.cloudinary.com/dw5ii3leu/image/upload/v1640431228/Habit%20Tracker/bigger-egg_j7dyto.png'
 				className='absolute'
