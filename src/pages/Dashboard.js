@@ -1,13 +1,17 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-import HabitCard from '../components/HabitCard'
 import './css/Dashboard.css'
+import { HabitCard } from '../components'
 import { habitsData } from '../data/habitsData'
+import { MARKETPLACE } from '../constants/routes'
 
 export default function Dashboard() {
 	return (
 		<div className='h-screen flex flex-row'>
+			{/** The left section: habit dashboard */}
 			<section className='w-fit bg-brand-yellow px-5 py-4 flex flex-auto flex-col'>
+				{/** Menu and search bar */}
 				<div className='flex flex-row cursor-pointer'>
 					<div className='bg-white w-10 h-10 rounded-xl shadow flex flex-col justify-between items-center py-2.5'>
 						<div className='bg-brand-grey w-6 h-1 rounded-xl'></div>
@@ -23,6 +27,8 @@ export default function Dashboard() {
 						/>
 					</div>
 				</div>
+
+				{/** Sort buttons */}
 				<div className='flex flex-row justify-between my-3'>
 					<div className='flex flex-row items-center'>
 						<p className='text-xs'>Show:</p>
@@ -39,6 +45,8 @@ export default function Dashboard() {
 						</div>
 					</div>
 				</div>
+
+				{/** List of habits */}
 				<div className='bg-brand-beggie border-3 border-black rounded-3xl overflow-auto px-3 scrollbar min-h-1/3'>
 					{habitsData.map(habit => (
 						<HabitCard
@@ -48,17 +56,22 @@ export default function Dashboard() {
 							days={habit.days}
 							hours={habit.hours}
 							minutes={habit.minutes}
+							interval={habit.interval}
 							key={habit.id}
 						/>
 					))}
 				</div>
 			</section>
+
+			{/** The right section: chicken garden */}
 			<section className='w-full bg-brand-green px-7 py-4 flex flex-col overflow-auto scrollbar min-w-[300px]'>
-				<img
-					src='https://res.cloudinary.com/dw5ii3leu/image/upload/v1640535508/Habit%20Tracker/market_gskom9.svg'
-					alt='Marketplace icon'
-					className='self-end h-14 cursor-pointer'
-				/>
+				<Link to={MARKETPLACE} className='self-end'>
+					<img
+						src='https://res.cloudinary.com/dw5ii3leu/image/upload/v1640535508/Habit%20Tracker/market_gskom9.svg'
+						alt='Marketplace icon'
+						className='h-14'
+					/>
+				</Link>
 				<div className='grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm-grid-cols-1 gap-4'>
 					<img
 						src='https://res.cloudinary.com/dw5ii3leu/image/upload/v1640536604/Habit%20Tracker/growing-egg_tcwcwd.svg'

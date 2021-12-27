@@ -25,7 +25,7 @@ export default function LogIn() {
 					placeholder='Password'
 					required
 				/>
-				<button className='btn w-60' type='submit'>
+				<button className='btn-green text-xl w-60' type='submit'>
 					Log In
 				</button>
 				<h3>

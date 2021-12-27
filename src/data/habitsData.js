@@ -7,6 +7,7 @@ export const habitsData = [
 		days: '00',
 		hours: '00',
 		minutes: '10',
+		interval: 'week',
 	},
 	{
 		id: 2,
@@ -16,6 +17,7 @@ export const habitsData = [
 		days: '00',
 		hours: '02',
 		minutes: '55',
+		interval: 'day',
 	},
 	{
 		id: 3,
@@ -25,6 +27,7 @@ export const habitsData = [
 		days: '00',
 		hours: '09',
 		minutes: '49',
+		interval: 'day',
 	},
 	{
 		id: 4,
@@ -34,6 +37,7 @@ export const habitsData = [
 		days: '01',
 		hours: '20',
 		minutes: '40',
+		interval: 'week',
 	},
 	{
 		id: 5,
@@ -43,6 +47,7 @@ export const habitsData = [
 		days: '03',
 		hours: '10',
 		minutes: '40',
+		interval: 'month',
 	},
 	{
 		id: 6,
@@ -52,6 +57,7 @@ export const habitsData = [
 		days: '20',
 		hours: '20',
 		minutes: '40',
+		interval: 'year',
 	},
 	{
 		id: 7,
@@ -61,6 +67,7 @@ export const habitsData = [
 		days: '30',
 		hours: '10',
 		minutes: '40',
+		interval: 'year',
 	},
 	{
 		id: 8,
@@ -70,5 +77,6 @@ export const habitsData = [
 		days: '355',
 		hours: '00',
 		minutes: '00',
+		interval: 'year',
 	},
 ]

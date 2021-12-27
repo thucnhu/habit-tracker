@@ -27,11 +27,35 @@
 }
 
 @layer components {
-	.btn {
-		@apply text-white text-xl text-center rounded-md shadow px-5 py-1 bg-brand-green hover:bg-brand-green-darker transition-all;
+	.btn-green {
+		@apply text-white text-center rounded-md shadow px-3 py-0.5 bg-brand-green hover:bg-brand-green-darker transition-all;
+	}
+
+	.btn-beggie {
+		@apply text-black text-center rounded-md shadow px-3 py-0.5 bg-brand-beggie hover:bg-brand-beggie-darker transition-all;
+	}
+
+	.btn-orange {
+		@apply text-white text-center rounded-md shadow px-3 py-0.5 bg-brand-orange hover:bg-brand-orange-darker transition-all;
 	}
 
 	.input {
 		@apply bg-white text-xl rounded-md shadow w-60 px-5 py-2 focus:border-black focus:border-4;
+	}
+
+	.habit-input {
+		@apply bg-brand-beggie text-sm py-0.5 px-2 rounded-md shadow-inner focus:outline-none;
+	}
+
+	.progress-bar {
+		@apply bg-gradient-to-r from-amber-400 via-orange-500 to-red-500 w-full h-auto border-2 text-center rounded-2xl;
+	}
+
+	.day-label {
+		@apply h-7 w-7 bg-brand-beggie rounded-full flex justify-center items-center mr-4;
+	}
+
+	.dropdown-element {
+		@apply text-sm px-2 py-0.5 hover:bg-brand-beggie-darker cursor-pointer;
 	}
 }

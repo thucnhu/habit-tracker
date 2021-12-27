@@ -12,8 +12,10 @@
 	"author": "Bui Tran Thuc Nhu, Nguyen Duy Anh, Bui Nguyen Thuy An, Nguyen Cao Nghi",
 	"license": "ISC",
 	"dependencies": {
+		"@popperjs/core": "^2.11.0",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
+		"react-popper": "^2.2.5",
 		"react-router-dom": "^6.2.1",
 		"react-scripts": "^5.0.0"
 	},

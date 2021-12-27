@@ -59,7 +59,7 @@ export default function SignUp() {
 						</Link>
 					</p>
 				</label>
-				<button className='btn w-60' type='submit'>
+				<button className='btn-green text-xl w-60' type='submit'>
 					Sign Up
 				</button>
 				<p>
