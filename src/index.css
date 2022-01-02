@@ -58,4 +58,8 @@
 	.dropdown-element {
 		@apply text-sm px-2 py-0.5 hover:bg-brand-beggie-darker cursor-pointer;
 	}
+
+	.menu-label {
+		@apply hover:bg-brand-light-grey px-3 py-1 w-auto cursor-pointer text-sm;
+	}
 }

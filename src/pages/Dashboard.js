@@ -1,23 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import './css/Dashboard.css'
-import { HabitCard } from '../components'
+import { HabitCard, Menu, NewCard } from '../components'
 import { habitsData } from '../data/habitsData'
 import { MARKETPLACE } from '../constants/routes'
 
 export default function Dashboard() {
+	const [addHabit, setAddHabit] = useState(false)
+
 	return (
 		<div className='h-screen flex flex-row'>
 			{/** The left section: habit dashboard */}
 			<section className='w-fit bg-brand-yellow px-5 py-4 flex flex-auto flex-col'>
 				{/** Menu and search bar */}
-				<div className='flex flex-row cursor-pointer'>
-					<div className='bg-white w-10 h-10 rounded-xl shadow flex flex-col justify-between items-center py-2.5'>
-						<div className='bg-brand-grey w-6 h-1 rounded-xl'></div>
-						<div className='bg-brand-grey w-6 h-1 rounded-xl'></div>
-						<div className='bg-brand-grey w-6 h-1 rounded-xl'></div>
-					</div>
+				<div className='flex flex-row'>
+					<Menu />
 					<div className='bg-white h-10 w-96 rounded-xl shadow ml-3 flex flex-row items-center'>
 						<i className='bi bi-search text-brand-grey text-xl mx-3'></i>
 						<input
@@ -61,7 +59,22 @@ export default function Dashboard() {
 						/>
 					))}
 				</div>
+
+				{/** Add new habit button */}
+				<button
+					className='bg-brand-green py-2 mt-4 text-white rounded-3xl text-2xl'
+					onClick={() => setAddHabit(true)}
+				>
+					+ Add habit
+				</button>
 			</section>
+
+			{/** Add new habit card */}
+			{addHabit && (
+				<div className='fixed top-0 left-0 w-full h-screen flex justify-center items-center bg-slate-500 bg-opacity-60'>
+					<NewCard setIsOpen={setAddHabit} />
+				</div>
+			)}
 
 			{/** The right section: chicken garden */}
 			<section className='w-full bg-brand-green px-7 py-4 flex flex-col overflow-auto scrollbar min-w-[300px]'>
@@ -72,6 +85,7 @@ export default function Dashboard() {
 						className='h-14'
 					/>
 				</Link>
+
 				<div className='grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm-grid-cols-1 gap-4'>
 					<img
 						src='https://res.cloudinary.com/dw5ii3leu/image/upload/v1640536604/Habit%20Tracker/growing-egg_tcwcwd.svg'

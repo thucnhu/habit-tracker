@@ -6,18 +6,9 @@ import useClickOutside from '../hooks/useClickOutside'
 import { IntervalDropdown, MonthDropdown } from './'
 import { DAY } from '../constants/day'
 
-export default function EditHabit({
-	setIsOpen,
-	name,
-	chickens,
-	percentage,
-	days,
-	hours,
-	minutes,
-	interval,
-}) {
-	const [newName, setNewName] = useState(name)
-	const [newInterval, setNewInterval] = useState(interval)
+export default function NewCard({ setIsOpen }) {
+	const [interval, setInterval] = useState('day')
+	const [name, setName] = useState('')
 	const [selectedDate, setSelectedDate] = useState(null)
 
 	const clickRef = useClickOutside(() => setIsOpen(false))
@@ -28,17 +19,16 @@ export default function EditHabit({
 	}
 
 	return (
-		<form
+		<div
 			className='bg-white p-3 rounded-xl shadow flex flex-row justify-between items-start'
 			ref={clickRef}
-			onSubmit={handleSubmit}
 		>
-			<div className='w-80 mr-3'>
+			<form className='w-80 mr-3' onSubmit={handleSubmit}>
 				<input
 					type='text'
-					value={newName}
-					onChange={event => setNewName(event.target.value)}
-					className='w-full focus:outline-blue-300 focus:shadow-inner bg-white text-lg'
+					placeholder='Habit name'
+					onChange={event => setName(event.target.value)}
+					className='w-full focus:outline-blue-300 focus:shadow-inner bg-white text-lg text-brand-grey'
 				/>
 
 				{/** Custom recurrence */}
@@ -47,19 +37,16 @@ export default function EditHabit({
 					<input type='number' min='0' className='habit-input w-14 mx-3' />
 					<IntervalDropdown
 						interval={interval}
-						getInterval={interval => setNewInterval(interval)}
+						getInterval={interval => setInterval(interval)}
 					/>
 				</div>
 
-				{newInterval === 'week' && (
+				{interval === 'week' && (
 					<div>
 						<p>Repeat on</p>
 						<div className='flex flex-row mt-1'>
 							{DAY.map(day => (
-								<div
-									className='day-label cursor-pointer'
-									key={Math.random() * 100}
-								>
+								<div className='day-label' key={Math.random() * 100}>
 									{day}
 								</div>
 							))}
@@ -67,7 +54,7 @@ export default function EditHabit({
 					</div>
 				)}
 
-				{newInterval === 'month' && (
+				{interval === 'month' && (
 					<div className='flex flex-row items-center justify-between'>
 						<p>Repeat on</p>
 						<MonthDropdown />
@@ -90,7 +77,7 @@ export default function EditHabit({
 						<input type='radio' name='ends' />
 						<p className='w-28 ml-2'>On</p>
 						<DatePicker
-							className='habit-input w-32 cursor-pointer'
+							className='habit-input w-32 cursor-pointer z-auto'
 							selected={selectedDate}
 							onChange={date => setSelectedDate(date)}
 							dateFormat='dd/MM/yyyy'
@@ -110,59 +97,21 @@ export default function EditHabit({
 				</div>
 
 				{/** Buttons */}
-				<div className='flex flex-row justify-between my-3'>
-					<div className='flex flex-row'>
-						<button
-							className='btn-green text-sm'
-							onClick={() => setIsOpen(false)}
-						>
-							Save
-						</button>
-						<button
-							className='btn-beggie text-sm mx-3'
-							onClick={() => setIsOpen(false)}
-						>
-							Cancel
-						</button>
-					</div>
+				<div className='flex flex-row'>
 					<button
-						className='btn-orange text-sm justify-self-end'
+						className='btn-green text-sm'
 						onClick={() => setIsOpen(false)}
 					>
-						Delete
+						Save
+					</button>
+					<button
+						className='btn-beggie text-sm mx-3'
+						onClick={() => setIsOpen(false)}
+					>
+						Cancel
 					</button>
 				</div>
-
-				{/** Progress bar */}
-				<div className='flex flex-row items-end'>
-					<img
-						src='https://res.cloudinary.com/dw5ii3leu/image/upload/v1640529300/Habit%20Tracker/small-chic_soojgc.svg'
-						alt='small chicken'
-						className='h-7'
-					/>
-					<p>x{chickens}</p>
-				</div>
-				<div className=' border-brand-grey progress-bar'>
-					<p className='text-xs h-auto'>{percentage}</p>
-				</div>
-			</div>
-
-			{/** Reminder time*/}
-			<div className='flex flex-col text-brand-grey'>
-				<p className='text-xs'>Reminder in</p>
-				<div className='flex flex-row items-baseline'>
-					<h3 className='w-8'>{days}</h3>
-					<p className='text-xs'>days</p>
-				</div>
-				<div className='flex flex-row items-baseline'>
-					<h3 className='w-8'>{hours}</h3>
-					<p className='text-xs'>hours</p>
-				</div>
-				<div className='flex flex-row items-baseline'>
-					<h3 className='w-8'>{minutes}</h3>
-					<p className='text-xs'>minutes</p>
-				</div>
-			</div>
-		</form>
+			</form>
+		</div>
 	)
 }

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { usePopper } from 'react-popper'
 
-import mergeRefs from '../hooks/mergeRefs'
 import useClickOutside from '../hooks/useClickOutside'
 import { MONTH } from '../constants/month'
 
@@ -18,7 +17,7 @@ export default function MonthDropdown() {
 	})
 
 	return (
-		<>
+		<div ref={clickRef}>
 			<div
 				className='habit-input w-36 flex flex-row items-center justify-between cursor-pointer'
 				onClick={() => setisOpen(!isOpen)}
@@ -31,8 +30,8 @@ export default function MonthDropdown() {
 			{/** Pop-up list for month interval */}
 			{isOpen && (
 				<div
-					className='absolute bg-brand-beggie shadow-inner'
-					ref={mergeRefs(setPopperElement, clickRef)}
+					className='absolute bg-brand-beggie shadow-inner z-10'
+					ref={setPopperElement}
 					style={styles.popper}
 					{...attributes.popper}
 				>
@@ -52,6 +51,6 @@ export default function MonthDropdown() {
 					</div>
 				</div>
 			)}
-		</>
+		</div>
 	)
 }

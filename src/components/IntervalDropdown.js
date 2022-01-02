@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { usePopper } from 'react-popper'
 
-import mergeRefs from '../hooks/mergeRefs'
 import useClickOutside from '../hooks/useClickOutside'
 import { INTERVAL } from '../constants/interval'
 
@@ -16,7 +15,7 @@ export default function IntervalDropdown({ interval, getInterval }) {
 	const { styles, attributes } = usePopper(refElement, popperElement)
 
 	return (
-		<>
+		<div ref={clickRef}>
 			<div
 				className='relative habit-input w-24 flex flex-row items-center justify-between cursor-pointer'
 				onClick={() => setIsOpen(!isOpen)}
@@ -29,8 +28,8 @@ export default function IntervalDropdown({ interval, getInterval }) {
 			{/** Pop-up list for different intervals */}
 			{isOpen && (
 				<div
-					className='absolute bg-brand-beggie shadow-inner'
-					ref={mergeRefs(setPopperElement, clickRef)}
+					className='absolute bg-brand-beggie shadow-inner z-10'
+					ref={setPopperElement}
 					style={styles.popper}
 					{...attributes.popper}
 				>
@@ -49,6 +48,6 @@ export default function IntervalDropdown({ interval, getInterval }) {
 					))}
 				</div>
 			)}
-		</>
+		</div>
 	)
 }
