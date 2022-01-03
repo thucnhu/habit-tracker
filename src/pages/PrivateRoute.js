@@ -1,11 +1,18 @@
 import { Navigate, Outlet } from 'react-router'
-import React, { useContext } from 'react'
+import React, { useState } from 'react'
 
-import FirebaseContext from '../context/Firebase'
 import { LOG_IN } from '../constants/routes'
 
-export default function PrivateRoute() {
-	const { auth } = useContext(FirebaseContext)
+import { auth } from '../lib/firebase'
+import { onAuthStateChanged } from 'firebase/auth'
 
-	return auth.currentUser ? <Outlet /> : <Navigate to={LOG_IN} />
+export default function PrivateRoute() {
+	const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+	onAuthStateChanged(auth, user => {
+		if (user) setIsLoggedIn(true)
+		else setIsLoggedIn(false)
+	})
+
+	return isLoggedIn ? <Outlet /> : <Navigate to={LOG_IN} />
 }

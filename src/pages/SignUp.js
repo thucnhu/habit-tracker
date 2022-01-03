@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 import { LOG_IN } from '../constants/routes'
 
-import FirebaseContext from '../context/Firebase'
+import { auth } from '../lib/firebase'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 
 export default function SignUp() {
@@ -12,7 +12,6 @@ export default function SignUp() {
 	const [confirmPassword, setConfirmPassword] = useState('')
 	const [agreed, setAgreed] = useState(false)
 
-	const { auth } = useContext(FirebaseContext)
 	const navigate = useNavigate()
 
 	async function handleSignUp(event) {
