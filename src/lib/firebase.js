@@ -1,9 +1,9 @@
 import { initializeApp } from 'firebase/app'
-import { collection, getDocs, getFirestore } from 'firebase/firestore'
+import { getFirestore } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 
 // initialize firebase app
-initializeApp({
+const app = initializeApp({
 	apiKey: 'AIzaSyCQLsmKbzew1opQu0sRXnigsCL_r1j_2v8',
 	authDomain: 'habit-tracker-4dca6.firebaseapp.com',
 	projectId: 'habit-tracker-4dca6',
@@ -16,12 +16,6 @@ initializeApp({
 const db = getFirestore()
 
 // initialize auth
-const auth = getAuth()
-
-// // collection ref
-// const habitRef = collection(db, 'habits')
-
-// // get collection data
-// getDocs(habitRef).then(snapshot => console.log(snapshot.docs))
+const auth = getAuth(app)
 
 export { auth, db }

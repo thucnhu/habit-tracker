@@ -9,7 +9,6 @@ import { auth } from '../lib/firebase'
 export default function LogIn() {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
-
 	const navigate = useNavigate()
 
 	async function handleLogIn(event) {
