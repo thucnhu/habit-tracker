@@ -1,19 +1,16 @@
 import React, { useState, useContext } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { usePopper } from 'react-popper'
 
-import { onAuthStateChanged, signOut } from 'firebase/auth'
-import FirebaseContext from '../context/Firebase'
+import { signOut } from 'firebase/auth'
+import { auth } from '../lib/firebase'
 
-import { LOG_IN } from '../constants/routes'
+import { AuthContext } from '../context/authContext'
 import useClickOutside from '../hooks/useClickOutside'
 
 export default function Menu() {
 	const [isOpen, setIsOpen] = useState(false)
 	const clickRef = useClickOutside(() => setIsOpen(false))
-
-	const navigate = useNavigate()
-	const { auth } = useContext(FirebaseContext)
+	const { user } = useContext(AuthContext)
 
 	const [refElement, setRefElement] = useState()
 	const [popperElement, setPopperElement] = useState()
@@ -31,7 +28,6 @@ export default function Menu() {
 	async function handleLogOut() {
 		try {
 			await signOut(auth)
-			navigate(LOG_IN)
 		} catch (err) {
 			console.error(err)
 		}
@@ -56,11 +52,7 @@ export default function Menu() {
 					{...attributes.popper}
 					className='bg-white rounded-md shadow-md py-2'
 				>
-					{auth.currentUser && (
-						<div className='menu-label'>
-							Profile {auth.currentUser.email}
-						</div>
-					)}
+					<div className='menu-label'>Profile {user?.email}</div>
 					<div className='menu-label'>Settings</div>
 					<div className='menu-label' onClick={handleLogOut}>
 						Log out

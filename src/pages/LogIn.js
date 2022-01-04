@@ -1,15 +1,15 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 import { SIGN_UP, DASHBOARD } from '../constants/routes'
 
 import { signInWithEmailAndPassword } from 'firebase/auth'
-import FirebaseContext from '../context/Firebase'
+import { auth } from '../lib/firebase'
 
 export default function LogIn() {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
-	const { auth } = useContext(FirebaseContext)
+
 	const navigate = useNavigate()
 
 	async function handleLogIn(event) {

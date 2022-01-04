@@ -3,14 +3,13 @@ import ReactDOM from 'react-dom'
 
 import './index.css'
 import App from './App'
-import FirebaseContext from './context/Firebase'
-import { auth, db } from './lib/firebase'
+import { AuthContextProvider } from './context/authContext'
 
 ReactDOM.render(
 	<React.StrictMode>
-		<FirebaseContext.Provider value={{ auth, db }}>
+		<AuthContextProvider>
 			<App />
-		</FirebaseContext.Provider>
+		</AuthContextProvider>
 	</React.StrictMode>,
 	document.getElementById('root')
 )
