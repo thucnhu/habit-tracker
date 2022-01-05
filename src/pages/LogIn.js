@@ -1,30 +1,21 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 import { SIGN_UP, DASHBOARD } from '../constants/routes'
 
-import { signInWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '../lib/firebase'
+import { AuthContext } from '../context/authContext'
 
 export default function LogIn() {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
+
+	const { login } = useContext(AuthContext)
 	const navigate = useNavigate()
 
 	async function handleLogIn(event) {
 		event.preventDefault()
-
-		try {
-			await signInWithEmailAndPassword(auth, email, password)
-			navigate(DASHBOARD)
-		} catch (err) {
-			console.error(err.message)
-			if (err.message === 'Firebase: Error (auth/user-not-found).')
-				alert('Email address not found.')
-			else if (err.message === 'Firebase: Error (auth/wrong-password).')
-				alert('Incorrect password.')
-			else alert('An error occurred.')
-		}
+		login(email, password)
+		navigate(DASHBOARD)
 	}
 
 	return (

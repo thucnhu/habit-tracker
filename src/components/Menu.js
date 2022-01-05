@@ -1,16 +1,13 @@
 import React, { useState, useContext } from 'react'
 import { usePopper } from 'react-popper'
 
-import { signOut } from 'firebase/auth'
-import { auth } from '../lib/firebase'
-
 import { AuthContext } from '../context/authContext'
 import useClickOutside from '../hooks/useClickOutside'
 
 export default function Menu() {
 	const [isOpen, setIsOpen] = useState(false)
 	const clickRef = useClickOutside(() => setIsOpen(false))
-	const { user } = useContext(AuthContext)
+	const { user, logout } = useContext(AuthContext)
 
 	const [refElement, setRefElement] = useState()
 	const [popperElement, setPopperElement] = useState()
@@ -24,14 +21,6 @@ export default function Menu() {
 			},
 		],
 	})
-
-	async function handleLogOut() {
-		try {
-			await signOut(auth)
-		} catch (err) {
-			console.error(err)
-		}
-	}
 
 	return (
 		<div ref={clickRef}>
@@ -52,9 +41,9 @@ export default function Menu() {
 					{...attributes.popper}
 					className='bg-white rounded-md shadow-md py-2'
 				>
-					<div className='menu-label'>Profile {user?.email}</div>
+					<div className='menu-label'>Profile {user?.displayName}</div>
 					<div className='menu-label'>Settings</div>
-					<div className='menu-label' onClick={handleLogOut}>
+					<div className='menu-label' onClick={logout}>
 						Log out
 					</div>
 				</div>

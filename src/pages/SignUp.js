@@ -1,51 +1,41 @@
-import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useContext, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 import { LOG_IN } from '../constants/routes'
-
-import { auth } from '../lib/firebase'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { AuthContext } from '../context/authContext'
 
 export default function SignUp() {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const [confirmPassword, setConfirmPassword] = useState('')
+	const [username, setUsername] = useState('')
 	const [agreed, setAgreed] = useState(false)
 
-	const navigate = useNavigate()
+	const { signup } = useContext(AuthContext)
 
 	async function handleSignUp(event) {
 		event.preventDefault()
 
-		if (password !== confirmPassword) alert('Passwords do not match')
-		if (!agreed) alert('You must agree to the terms and conditions.')
-
-		try {
-			await createUserWithEmailAndPassword(auth, email, password)
-			alert('Successfully created an account!')
-			navigate(LOG_IN)
-		} catch (err) {
-			if (
-				err.message ===
-				'Firebase: Password should be at least 6 characters (auth/weak-password).'
-			)
-				alert('Password should be at least 6 characters.')
-			else if (
-				err.message === 'Firebase: Error (auth/email-already-in-use).'
-			)
-				alert('Email address is already in use.')
-			else alert('An error occurred.')
+		if (password !== confirmPassword) {
+			alert('Passwords do not match')
+			return
 		}
+		if (!agreed) {
+			alert('You must agree to the terms and conditions.')
+			return
+		}
+
+		signup(email, password, username)
 	}
 
 	return (
 		<div className='bg-brand-yellow flex justify-center items-center h-screen'>
 			<img
-				src='https://res.cloudinary.com/dw5ii3leu/image/upload/v1641115571/Habit%20Tracker/bigger-egg_xzjov6.png'
+				src='https://res.cloudinary.com/dw5ii3leu/image/upload/v1641357799/Habit%20Tracker/bigger-egg_lfqsee.png'
 				className='absolute'
 			/>
 			<form
-				className='absolute flex flex-col justify-between items-center h-80'
+				className='absolute flex flex-col justify-between items-center h-96'
 				onSubmit={handleSignUp}
 			>
 				<h1>eggcellent</h1>
@@ -56,6 +46,15 @@ export default function SignUp() {
 					placeholder='Email'
 					value={email}
 					onChange={e => setEmail(e.target.value)}
+					required
+				/>
+				<input
+					type='text'
+					className='form-control input focus:outline-none'
+					name='username'
+					placeholder='Username'
+					value={username}
+					onChange={e => setUsername(e.target.value)}
 					required
 				/>
 				<input
