@@ -1,8 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-import { SIGN_UP, DASHBOARD } from '../constants/routes'
-
+import { SIGN_UP, DASHBOARD, RESET_PASSWORD } from '../constants/routes'
 import { AuthContext } from '../context/authContext'
 
 export default function LogIn() {
@@ -25,7 +24,7 @@ export default function LogIn() {
 				className='absolute'
 			/>
 			<form
-				className='absolute flex flex-col justify-between items-center h-64'
+				className='absolute flex flex-col justify-between items-center h-72'
 				onSubmit={handleLogIn}
 			>
 				<h1>eggcellent</h1>
@@ -48,6 +47,9 @@ export default function LogIn() {
 				<button className='btn-green text-xl w-60' type='submit'>
 					Log In
 				</button>
+				<Link to={RESET_PASSWORD}>
+					<h3>Forgot password?</h3>
+				</Link>
 				<h3>
 					First time here? Let's{' '}
 					<Link className='text-blue-800' to={SIGN_UP}>

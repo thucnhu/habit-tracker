@@ -8,6 +8,7 @@ import {
 	createUserWithEmailAndPassword,
 	signInWithEmailAndPassword,
 	sendEmailVerification,
+	sendPasswordResetEmail,
 } from 'firebase/auth'
 
 const AuthContext = createContext()
@@ -54,9 +55,7 @@ function AuthContextProvider({ children }) {
 
 	async function login(email, password) {
 		try {
-			if (user.emailVerified)
-				await signInWithEmailAndPassword(auth, email, password)
-			else alert('Please verify your email address first.')
+			await signInWithEmailAndPassword(auth, email, password)
 		} catch (err) {
 			console.error(err.message)
 			if (err.message === 'Firebase: Error (auth/user-not-found).')
@@ -75,8 +74,19 @@ function AuthContextProvider({ children }) {
 		}
 	}
 
+	async function resetPassword(email) {
+		try {
+			await sendPasswordResetEmail(auth, email)
+			alert('Check your email to reset your password.')
+		} catch (err) {
+			console.error(err)
+		}
+	}
+
 	return (
-		<AuthContext.Provider value={{ user, login, signup, logout }}>
+		<AuthContext.Provider
+			value={{ user, login, signup, logout, resetPassword }}
+		>
 			{!loading && children}
 		</AuthContext.Provider>
 	)
