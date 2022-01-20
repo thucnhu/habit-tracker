@@ -6,10 +6,10 @@ out the app via this [link](https://habit-tracker-fuv.herokuapp.com/).
 ## Getting started
 
 Install [NodeJS](https://nodejs.org/en/) and [npm](https://www.npmjs.com/), then run the following command to install the dependencies:
-`npm install`
+```npm install```
 
 Host the app locally by running:
-`npm start`
+```npm start```
 
 ## Technical design
 
