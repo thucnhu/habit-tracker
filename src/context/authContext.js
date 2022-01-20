@@ -49,7 +49,10 @@ function AuthContextProvider({ children }) {
 				err.message === 'Firebase: Error (auth/email-already-in-use).'
 			)
 				alert('Email address is already in use.')
-			else alert('An error occurred.')
+			else {
+				alert('An error occurred.')
+				console.log(err)
+			}
 		}
 	}
 
