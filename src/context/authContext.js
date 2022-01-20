@@ -36,7 +36,7 @@ function AuthContextProvider({ children }) {
 			await createUserWithEmailAndPassword(auth, email, password)
 			await updateProfile(auth.currentUser, { displayName: username })
 			await sendEmailVerification(auth.currentUser, {
-				url: 'http://localhost:3000/',
+				url: 'https://habit-tracker-fuv.herokuapp.com/',
 			})
 			alert('Please check your email to verify account!')
 		} catch (err) {
