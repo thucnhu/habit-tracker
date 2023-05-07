@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { usePopper } from 'react-popper'
 
-import useClickOutside from '../hooks/useClickOutside'
-import { MONTH } from '../constants/month'
+import useClickOutside from '../../hooks/useClickOutside'
+import { MONTH } from './constants'
 
 export default function MonthDropdown() {
 	const clickRef = useClickOutside(() => setisOpen(false))

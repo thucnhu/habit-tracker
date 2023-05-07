@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import './css/Dashboard.css'
-import { HabitCard, Menu, NewCard } from '../components'
 import { habitsData } from '../data/habitsData'
 import { MARKETPLACE } from '../constants/routes'
+import HabitCard from '../components/HabitCard'
+import NewCard from '../components/HabitCard/NewCard'
+import Menu from '../components/Menu'
 
 export default function Dashboard() {
 	const [addHabit, setAddHabit] = useState(false)

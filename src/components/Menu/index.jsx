@@ -1,8 +1,9 @@
 import React, { useState, useContext } from 'react'
 import { usePopper } from 'react-popper'
-
-import { AuthContext } from '../context/authContext'
-import useClickOutside from '../hooks/useClickOutside'
+import { Link } from 'react-router-dom'
+import { PROFILE } from '../../constants/routes'
+import { AuthContext } from '../../context/authContext'
+import useClickOutside from '../../hooks/useClickOutside'
 
 export default function Menu() {
 	const [isOpen, setIsOpen] = useState(false)
@@ -41,7 +42,11 @@ export default function Menu() {
 					{...attributes.popper}
 					className='bg-white rounded-md shadow-md py-2'
 				>
-					<div className='menu-label'>Profile {user?.displayName}</div>
+					<div className='menu-label'>
+						<Link to={PROFILE}>
+							Profile {user?.displayName}
+						</Link>
+					</div>
 					<div className='menu-label'>Settings</div>
 					<div className='menu-label' onClick={logout}>
 						Log out

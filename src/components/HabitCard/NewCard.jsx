@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
-import useClickOutside from '../hooks/useClickOutside'
-import { IntervalDropdown, MonthDropdown } from './'
-import { DAY } from '../constants/day'
+import useClickOutside from '../../hooks/useClickOutside'
+import { DAY } from './constants'
+import IntervalDropdown from './IntervalDropdown'
+import MonthDropdown from './MonthDropdown'
 
 export default function NewCard({ setIsOpen }) {
 	const [interval, setInterval] = useState('day')

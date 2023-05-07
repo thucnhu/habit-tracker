@@ -1,14 +1,5 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-
-import {
-	Dashboard,
-	LogIn,
-	SignUp,
-	NotFound,
-	Marketplace,
-	ResetPassword,
-} from './pages'
 import { PrivateRoute, PublicRoute } from './routes'
 import {
 	DASHBOARD,
@@ -16,7 +7,17 @@ import {
 	SIGN_UP,
 	MARKETPLACE,
 	RESET_PASSWORD,
+	PROFILE,
+	SETTINGS,
 } from './constants/routes'
+import LogIn from './pages/LogIn'
+import SignUp from './pages/SignUp'
+import ResetPassword from './pages/ResetPassword'
+import Dashboard from './pages/Dashboard'
+import Marketplace from './pages/Marketplace'
+import Profile from './pages/Profile'
+import Settings from './pages/Settings'
+import NotFound from './pages/NotFound'
 
 export default function App() {
 	return (
@@ -30,6 +31,8 @@ export default function App() {
 				<Route element={<PrivateRoute />}>
 					<Route path={DASHBOARD} element={<Dashboard />} />
 					<Route path={MARKETPLACE} element={<Marketplace />} />
+					<Route path={PROFILE} element={<Profile />} />
+					<Route path={SETTINGS} element={<Settings />} />
 				</Route>
 				<Route path='*' element={<NotFound />} />
 			</Routes>

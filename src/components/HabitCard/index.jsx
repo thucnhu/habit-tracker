@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
+import EditHabit from './EditHabit'
 
-import { EditHabit } from './'
 
 export default function HabitCard({
 	name,
