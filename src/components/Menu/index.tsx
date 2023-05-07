@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { usePopper } from 'react-popper'
 import { Link } from 'react-router-dom'
-import { PROFILE } from '../../constants/routes'
+import { DASHBOARD, PROFILE, SETTINGS } from '../../constants/routes'
 import { AuthContext } from '../../context/authContext'
 import useClickOutside from '../../hooks/useClickOutside'
 
@@ -45,11 +45,14 @@ export default function Menu() {
 					className='bg-white rounded-md shadow-md py-2'
 				>
 					<div className='menu-label'>
-						<Link to={PROFILE}>
-							Profile {user?.displayName}
-						</Link>
+						<Link to={DASHBOARD}>Dashboard</Link>
 					</div>
-					<div className='menu-label'>Settings</div>
+					<div className='menu-label'>
+						<Link to={PROFILE}>Profile {user?.displayName}</Link>
+					</div>
+					<div className='menu-label'>
+						<Link to={SETTINGS}>Settings</Link>
+					</div>
 					<div className='menu-label' onClick={logout}>
 						Log out
 					</div>

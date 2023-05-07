@@ -32,6 +32,9 @@ function AuthContextProvider({ children }) {
 			if (user) {
 				setUser(user)
 				setLoading(false)
+			} else {
+				setUser(undefined)
+				setLoading(false)
 			}
 		})
 
