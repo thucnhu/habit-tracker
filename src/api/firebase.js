@@ -13,7 +13,7 @@ const app = initializeApp({
 })
 
 // initialize firestore
-const db = getFirestore()
+const db = getFirestore(app)
 
 // initialize auth
 const auth = getAuth(app)

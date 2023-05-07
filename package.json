@@ -9,9 +9,13 @@
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"keywords": [],
-	"author": "Bui Tran Thuc Nhu, Nguyen Duy Anh, Bui Nguyen Thuy An, Nguyen Cao Nghi",
+	"author": "Bui Tran Thuc Nhu",
 	"license": "ISC",
 	"dependencies": {
+		"@emotion/react": "^11.11.0",
+		"@mantine/core": "^6.0.10",
+		"@mantine/form": "^6.0.10",
+		"@mantine/hooks": "^6.0.10",
 		"@popperjs/core": "^2.11.0",
 		"firebase": "^9.6.1",
 		"react": "^17.0.2",
