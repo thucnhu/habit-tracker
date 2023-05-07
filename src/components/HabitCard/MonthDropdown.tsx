@@ -21,6 +21,7 @@ export default function MonthDropdown() {
 			<div
 				className='habit-input w-36 flex flex-row items-center justify-between cursor-pointer'
 				onClick={() => setisOpen(!isOpen)}
+				// @ts-ignore
 				ref={setRefElement}
 			>
 				<p>{day}</p>
@@ -31,6 +32,7 @@ export default function MonthDropdown() {
 			{isOpen && (
 				<div
 					className='absolute bg-brand-beggie shadow-inner z-10'
+					// @ts-ignore
 					ref={setPopperElement}
 					style={styles.popper}
 					{...attributes.popper}

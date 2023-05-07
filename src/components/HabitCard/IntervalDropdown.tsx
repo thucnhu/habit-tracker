@@ -12,13 +12,16 @@ export default function IntervalDropdown({ interval, getInterval }) {
 
 	const [refElement, setRefElement] = useState()
 	const [popperElement, setPopperElement] = useState()
-	const { styles, attributes } = usePopper(refElement, popperElement)
+	const { styles, attributes } = usePopper(refElement, popperElement, {
+		placement: 'bottom-start',
+	})
 
 	return (
 		<div ref={clickRef}>
 			<div
 				className='relative habit-input w-24 flex flex-row items-center justify-between cursor-pointer'
 				onClick={() => setIsOpen(!isOpen)}
+				// @ts-ignore
 				ref={setRefElement}
 			>
 				<p>{newInterval}</p>
@@ -29,6 +32,7 @@ export default function IntervalDropdown({ interval, getInterval }) {
 			{isOpen && (
 				<div
 					className='absolute bg-brand-beggie shadow-inner z-10'
+					// @ts-ignore
 					ref={setPopperElement}
 					style={styles.popper}
 					{...attributes.popper}

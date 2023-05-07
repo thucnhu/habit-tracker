@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react'
+import { createContext, useState, useEffect } from 'react'
 
 import { auth } from '../api/firebase'
 import {
@@ -9,12 +9,22 @@ import {
 	signInWithEmailAndPassword,
 	sendEmailVerification,
 	sendPasswordResetEmail,
+	User,
 } from 'firebase/auth'
 
-const AuthContext = createContext()
+interface AuthValue {
+	user: User,
+	login: (email: string, password: string) => Promise<void>,
+	signup: (email: string, password: string, username: string) => Promise<void>,
+	logout: () => Promise<void>,
+	resetPassword: (email: string) => Promise<void>,
+}
+
+// @ts-ignore
+const AuthContext = createContext<AuthValue>()
 
 function AuthContextProvider({ children }) {
-	const [user, setUser] = useState({})
+	const [user, setUser] = useState<User>()
 	const [loading, setLoading] = useState(true)
 
 	useEffect(() => {
@@ -22,23 +32,22 @@ function AuthContextProvider({ children }) {
 			if (user) {
 				setUser(user)
 				setLoading(false)
-			} else {
-				setUser({})
-				setLoading(false)
 			}
 		})
 
 		return unsubscribe
 	}, [])
 
-	async function signup(email, password, username) {
+	async function signup(email: string, password: string, username: string) {
 		try {
-			await createUserWithEmailAndPassword(auth, email, password)
-			await updateProfile(auth.currentUser, { displayName: username })
-			await sendEmailVerification(auth.currentUser, {
-				url: 'https://habit-tracker-fuv.herokuapp.com/',
-			})
-			alert('Please check your email to verify account!')
+			if (auth.currentUser) {
+				await createUserWithEmailAndPassword(auth, email, password)
+				await updateProfile(auth.currentUser, { displayName: username })
+				await sendEmailVerification(auth.currentUser, {
+					url: 'https://habit-tracker-fuv.herokuapp.com/',
+				})
+				alert('Please check your email to verify account!')
+			}
 		} catch (err) {
 			if (
 				err.message ===
@@ -56,7 +65,7 @@ function AuthContextProvider({ children }) {
 		}
 	}
 
-	async function login(email, password) {
+	async function login(email: string, password: string) {
 		try {
 			await signInWithEmailAndPassword(auth, email, password)
 		} catch (err) {
@@ -77,7 +86,7 @@ function AuthContextProvider({ children }) {
 		}
 	}
 
-	async function resetPassword(email) {
+	async function resetPassword(email: string) {
 		try {
 			await sendPasswordResetEmail(auth, email)
 			alert('Check your email to reset your password.')
@@ -88,6 +97,7 @@ function AuthContextProvider({ children }) {
 
 	return (
 		<AuthContext.Provider
+			// @ts-ignore
 			value={{ user, login, signup, logout, resetPassword }}
 		>
 			{!loading && children}

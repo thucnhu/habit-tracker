@@ -27,6 +27,7 @@ export default function Menu() {
 		<div ref={clickRef}>
 			<div
 				className='bg-white w-10 h-10 rounded-xl shadow flex flex-col justify-between items-center py-2.5 cursor-pointer'
+				// @ts-ignore
 				ref={setRefElement}
 				onClick={() => setIsOpen(prevIsOpen => !prevIsOpen)}
 			>
@@ -37,6 +38,7 @@ export default function Menu() {
 
 			{isOpen && (
 				<div
+					// @ts-ignore
 					ref={setPopperElement}
 					style={styles.popper}
 					{...attributes.popper}

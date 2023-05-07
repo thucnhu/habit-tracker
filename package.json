@@ -1,48 +1,53 @@
 {
-	"name": "habit-tracker",
-	"version": "1.0.0",
-	"description": "A web app that facilitates you in maintaining and improving habits using spaced-repetition reminder",
-	"main": "index.js",
-	"scripts": {
-		"start": "react-scripts start",
-		"build": "react-scripts build",
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"keywords": [],
-	"author": "Bui Tran Thuc Nhu",
-	"license": "ISC",
-	"dependencies": {
-		"@emotion/react": "^11.11.0",
-		"@mantine/core": "^6.0.10",
-		"@mantine/form": "^6.0.10",
-		"@mantine/hooks": "^6.0.10",
-		"@popperjs/core": "^2.11.0",
-		"firebase": "^9.6.1",
-		"react": "^17.0.2",
-		"react-datepicker": "^4.5.0",
-		"react-dom": "^17.0.2",
-		"react-popper": "^2.2.5",
-		"react-router-dom": "^6.2.1",
-		"react-scripts": "^5.0.0"
-	},
-	"devDependencies": {
-		"autoprefixer": "^10.4.0",
-		"markdown-notes-tree": "^1.12.0",
-		"postcss": "^8.4.5",
-		"tailwindcss": "^3.0.7",
-		"webpack": "^5.65.0",
-		"webpack-cli": "^4.9.1"
-	},
-	"browserslist": {
-		"production": [
-			">0.2%",
-			"not dead",
-			"not op_mini all"
-		],
-		"development": [
-			"last 1 chrome version",
-			"last 1 firefox version",
-			"last 1 safari version"
-		]
-	}
+  "name": "habit-tracker",
+  "version": "1.0.0",
+  "description": "A web app that facilitates you in maintaining and improving habits using spaced-repetition reminder",
+  "main": "index.tsx",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Bui Tran Thuc Nhu",
+  "license": "ISC",
+  "dependencies": {
+    "@emotion/react": "^11.11.0",
+    "@mantine/core": "^6.0.10",
+    "@mantine/form": "^6.0.10",
+    "@mantine/hooks": "^6.0.10",
+    "@popperjs/core": "^2.11.0",
+    "@types/node": "^20.1.0",
+    "@types/react": "^18.2.6",
+    "@types/react-dom": "^18.2.4",
+    "@types/websocket": "^1.0.5",
+    "firebase": "^9.6.1",
+    "react": "^17.0.2",
+    "react-datepicker": "^4.5.0",
+    "react-dom": "^17.0.2",
+    "react-popper": "^2.2.5",
+    "react-router-dom": "^6.2.1",
+    "react-scripts": "^5.0.0",
+    "typescript": "^5.0.4"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.0",
+    "markdown-notes-tree": "^1.12.0",
+    "postcss": "^8.4.5",
+    "tailwindcss": "^3.0.7",
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
