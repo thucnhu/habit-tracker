@@ -1,4 +1,5 @@
 {
+  "homepage": "https://thucnhu.github.io/habit-tracker/",
   "name": "habit-tracker",
   "version": "1.0.0",
   "description": "A web app that facilitates you in maintaining and improving habits using spaced-repetition reminder",
