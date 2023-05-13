@@ -1,4 +1,5 @@
-import { createContext, useState, useEffect } from 'react'
+import { createContext, useState, useEffect, PropsWithChildren } from 'react'
+import React from 'react'
 
 import { auth } from '../api/firebase'
 import {
@@ -23,7 +24,7 @@ interface AuthValue {
 // @ts-ignore
 const AuthContext = createContext<AuthValue>()
 
-function AuthContextProvider({ children }) {
+function AuthContextProvider({ children }: PropsWithChildren) {
 	const [user, setUser] = useState<User>()
 	const [loading, setLoading] = useState(true)
 
@@ -51,7 +52,7 @@ function AuthContextProvider({ children }) {
 				})
 				alert('Please check your email to verify account!')
 			}
-		} catch (err) {
+		} catch (err: any) {
 			if (
 				err.message ===
 				'Firebase: Password should be at least 6 characters (auth/weak-password).'
@@ -71,7 +72,7 @@ function AuthContextProvider({ children }) {
 	async function login(email: string, password: string) {
 		try {
 			await signInWithEmailAndPassword(auth, email, password)
-		} catch (err) {
+		} catch (err: any) {
 			console.error(err.message)
 			if (err.message === 'Firebase: Error (auth/user-not-found).')
 				alert('Email address not found.')

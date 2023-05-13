@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { usePopper } from 'react-popper'
+import useClickOutside from '../../../../hooks/useClickOutside'
 
-import useClickOutside from '../../hooks/useClickOutside'
 import { INTERVAL } from './constants'
 
 export default function IntervalDropdown({ interval, getInterval }) {

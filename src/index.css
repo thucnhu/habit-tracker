@@ -28,19 +28,19 @@
 
 @layer components {
 	.btn-green {
-		@apply text-white text-center rounded-md shadow px-3 py-0.5 bg-brand-green hover:bg-brand-green-darker transition-all;
+		@apply cursor-pointer text-white text-center rounded-md shadow px-3 py-0.5 bg-brand-green hover:bg-brand-green-darker transition-all;
 	}
 
 	.btn-beggie {
-		@apply text-black text-center rounded-md shadow px-3 py-0.5 bg-brand-beggie hover:bg-brand-beggie-darker transition-all;
+		@apply cursor-pointer text-black text-center rounded-md shadow px-3 py-0.5 bg-brand-beggie hover:bg-brand-beggie-darker transition-all;
 	}
 
 	.btn-orange {
-		@apply text-white text-center rounded-md shadow px-3 py-0.5 bg-brand-orange hover:bg-brand-orange-darker transition-all;
+		@apply cursor-pointer text-white text-center rounded-md shadow px-3 py-0.5 bg-brand-orange hover:bg-brand-orange-darker transition-all;
 	}
 
 	.input {
-		@apply bg-white text-xl rounded-md shadow w-60 px-5 py-2 focus:border-black focus:border-4;
+		@apply bg-white text-xl rounded-md shadow w-60 px-5 py-2;
 	}
 
 	.habit-input {

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
+import useClickOutside from '../../../../hooks/useClickOutside'
 
-import useClickOutside from '../../hooks/useClickOutside'
 import { DAY } from './constants'
 import IntervalDropdown from './IntervalDropdown'
 import MonthDropdown from './MonthDropdown'

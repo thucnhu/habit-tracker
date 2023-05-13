@@ -13,7 +13,7 @@ export default function SignUp() {
 
 	const { signup } = useContext(AuthContext)
 
-	async function handleSignUp(event) {
+	async function handleSignUp(event: React.FormEvent<HTMLFormElement>) {
 		event.preventDefault()
 
 		if (password !== confirmPassword) {
