@@ -4,6 +4,7 @@ export default function useClickOutside(handler) {
 	const clickRef = useRef(null)
 
 	function clickOutside(e) {
+		// @ts-ignore
 		if (clickRef.current && !clickRef.current.contains(e.target)) handler()
 	}
 

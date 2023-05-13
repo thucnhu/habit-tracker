@@ -1,6 +1,7 @@
-import React, { createContext, useState, useEffect } from 'react'
+import { createContext, useState, useEffect, PropsWithChildren } from 'react'
+import React from 'react'
 
-import { auth } from '../lib/firebase'
+import { auth } from '../api/firebase'
 import {
 	onAuthStateChanged,
 	updateProfile,
@@ -9,12 +10,22 @@ import {
 	signInWithEmailAndPassword,
 	sendEmailVerification,
 	sendPasswordResetEmail,
+	User,
 } from 'firebase/auth'
 
-const AuthContext = createContext()
+interface AuthValue {
+	user: User,
+	login: (email: string, password: string) => Promise<void>,
+	signup: (email: string, password: string, username: string) => Promise<void>,
+	logout: () => Promise<void>,
+	resetPassword: (email: string) => Promise<void>,
+}
 
-function AuthContextProvider({ children }) {
-	const [user, setUser] = useState({})
+// @ts-ignore
+const AuthContext = createContext<AuthValue>()
+
+function AuthContextProvider({ children }: PropsWithChildren) {
+	const [user, setUser] = useState<User>()
 	const [loading, setLoading] = useState(true)
 
 	useEffect(() => {
@@ -23,7 +34,7 @@ function AuthContextProvider({ children }) {
 				setUser(user)
 				setLoading(false)
 			} else {
-				setUser({})
+				setUser(undefined)
 				setLoading(false)
 			}
 		})
@@ -31,15 +42,17 @@ function AuthContextProvider({ children }) {
 		return unsubscribe
 	}, [])
 
-	async function signup(email, password, username) {
+	async function signup(email: string, password: string, username: string) {
 		try {
-			await createUserWithEmailAndPassword(auth, email, password)
-			await updateProfile(auth.currentUser, { displayName: username })
-			await sendEmailVerification(auth.currentUser, {
-				url: 'https://habit-tracker-fuv.herokuapp.com/',
-			})
-			alert('Please check your email to verify account!')
-		} catch (err) {
+			if (auth.currentUser) {
+				await createUserWithEmailAndPassword(auth, email, password)
+				await updateProfile(auth.currentUser, { displayName: username })
+				await sendEmailVerification(auth.currentUser, {
+					url: 'https://habit-tracker-fuv.herokuapp.com/',
+				})
+				alert('Please check your email to verify account!')
+			}
+		} catch (err: any) {
 			if (
 				err.message ===
 				'Firebase: Password should be at least 6 characters (auth/weak-password).'
@@ -56,10 +69,10 @@ function AuthContextProvider({ children }) {
 		}
 	}
 
-	async function login(email, password) {
+	async function login(email: string, password: string) {
 		try {
 			await signInWithEmailAndPassword(auth, email, password)
-		} catch (err) {
+		} catch (err: any) {
 			console.error(err.message)
 			if (err.message === 'Firebase: Error (auth/user-not-found).')
 				alert('Email address not found.')
@@ -77,7 +90,7 @@ function AuthContextProvider({ children }) {
 		}
 	}
 
-	async function resetPassword(email) {
+	async function resetPassword(email: string) {
 		try {
 			await sendPasswordResetEmail(auth, email)
 			alert('Check your email to reset your password.')
@@ -88,6 +101,7 @@ function AuthContextProvider({ children }) {
 
 	return (
 		<AuthContext.Provider
+			// @ts-ignore
 			value={{ user, login, signup, logout, resetPassword }}
 		>
 			{!loading && children}

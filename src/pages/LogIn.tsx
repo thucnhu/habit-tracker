@@ -11,7 +11,7 @@ export default function LogIn() {
 	const { login } = useContext(AuthContext)
 	const navigate = useNavigate()
 
-	async function handleLogIn(event) {
+	async function handleLogIn(event: React.FormEvent<HTMLFormElement>) {
 		event.preventDefault()
 		login(email, password)
 		navigate(DASHBOARD)
