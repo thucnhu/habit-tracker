@@ -4,7 +4,12 @@ import useClickOutside from '../../../../hooks/useClickOutside'
 
 import { INTERVAL } from './constants'
 
-export default function IntervalDropdown({ interval, getInterval }) {
+interface IntervalDropdownProps {
+	interval: string
+	getInterval: (interval: string) => void
+}
+
+export default function IntervalDropdown({ interval, getInterval }: IntervalDropdownProps) {
 	const [newInterval, setNewInterval] = useState(interval)
 	const [isOpen, setIsOpen] = useState(false)
 

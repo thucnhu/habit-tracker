@@ -7,14 +7,18 @@ import { DAY } from './constants'
 import IntervalDropdown from './IntervalDropdown'
 import MonthDropdown from './MonthDropdown'
 
-export default function NewCard({ setIsOpen }) {
+interface NewCardProps {
+	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export default function NewCard({ setIsOpen }: NewCardProps) {
 	const [interval, setInterval] = useState('day')
 	const [name, setName] = useState('')
-	const [selectedDate, setSelectedDate] = useState(null)
+	const [selectedDate, setSelectedDate] = useState<Date>()
 
 	const clickRef = useClickOutside(() => setIsOpen(false))
 
-	function handleSubmit(event) {
+	function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
 		event.preventDefault()
 		setIsOpen(false)
 	}
@@ -70,7 +74,7 @@ export default function NewCard({ setIsOpen }) {
 						<input
 							type='radio'
 							name='ends'
-							onChange={() => setSelectedDate(null)}
+							onChange={() => setSelectedDate(undefined)}
 						/>
 						<p className='w-20 ml-2'>Never</p>
 					</label>
@@ -80,7 +84,7 @@ export default function NewCard({ setIsOpen }) {
 						<DatePicker
 							className='habit-input w-32 cursor-pointer z-auto'
 							selected={selectedDate}
-							onChange={date => setSelectedDate(date)}
+							onChange={date => setSelectedDate(date as Date)}
 							dateFormat='dd/MM/yyyy'
 						/>
 					</label>
@@ -91,7 +95,7 @@ export default function NewCard({ setIsOpen }) {
 							type='number'
 							className='habit-input w-14 mr-1 text-brand-grey'
 							min='0'
-							onChange={() => setSelectedDate(null)}
+							onChange={() => setSelectedDate(undefined)}
 						/>
 						<p className='text-brand-grey'>occurences</p>
 					</label>
