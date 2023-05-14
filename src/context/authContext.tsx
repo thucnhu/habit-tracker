@@ -44,14 +44,11 @@ function AuthContextProvider({ children }: PropsWithChildren) {
 
 	async function signup(email: string, password: string, username: string) {
 		try {
-			if (auth.currentUser) {
-				await createUserWithEmailAndPassword(auth, email, password)
-				await updateProfile(auth.currentUser, { displayName: username })
-				await sendEmailVerification(auth.currentUser, {
-					url: 'https://habit-tracker-fuv.herokuapp.com/',
-				})
-				alert('Please check your email to verify account!')
-			}
+			await createUserWithEmailAndPassword(auth, email, password)
+			await updateProfile(auth.currentUser!, { displayName: username })
+			await sendEmailVerification(auth.currentUser!)
+
+			alert('Please check your email to verify account!')
 		} catch (err: any) {
 			if (
 				err.message ===

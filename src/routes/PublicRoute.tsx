@@ -4,8 +4,10 @@ import React, { useContext } from 'react'
 import { DASHBOARD } from '../constants/routes'
 import { AuthContext } from '../context/authContext'
 
-export default function PrivateRoute() {
+export default function PublicRoute() {
 	const { user } = useContext(AuthContext)
 
-	return !user ? <Outlet /> : <Navigate to={DASHBOARD} />
+	if (!user || (user && !user.emailVerified)) return <Outlet />
+
+	return <Navigate to={DASHBOARD} />
 }
