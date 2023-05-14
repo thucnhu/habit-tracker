@@ -6,6 +6,7 @@ import useClickOutside from '../../../../hooks/useClickOutside'
 import { DAY } from './constants'
 import IntervalDropdown from './IntervalDropdown'
 import MonthDropdown from './MonthDropdown'
+import { EditHabitCardProps } from './types'
 
 export default function EditHabit({
 	setIsOpen,
@@ -16,14 +17,14 @@ export default function EditHabit({
 	hours,
 	minutes,
 	interval,
-}) {
+}: EditHabitCardProps) {
 	const [newName, setNewName] = useState(name)
 	const [newInterval, setNewInterval] = useState(interval)
-	const [selectedDate, setSelectedDate] = useState(null)
+	const [selectedDate, setSelectedDate] = useState<Date>()
 
 	const clickRef = useClickOutside(() => setIsOpen(false))
 
-	function handleSubmit(event) {
+	function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
 		event.preventDefault()
 		setIsOpen(false)
 	}
@@ -48,7 +49,7 @@ export default function EditHabit({
 					<input type='number' min='0' className='habit-input w-14 mx-3' />
 					<IntervalDropdown
 						interval={interval}
-						getInterval={interval => setNewInterval(interval)}
+						getInterval={(interval: string) => setNewInterval(interval)}
 					/>
 				</div>
 
@@ -83,7 +84,7 @@ export default function EditHabit({
 						<input
 							type='radio'
 							name='ends'
-							onChange={() => setSelectedDate(null)}
+							onChange={() => setSelectedDate(undefined)}
 						/>
 						<p className='w-20 ml-2'>Never</p>
 					</label>
@@ -93,7 +94,7 @@ export default function EditHabit({
 						<DatePicker
 							className='habit-input w-32 cursor-pointer'
 							selected={selectedDate}
-							onChange={date => setSelectedDate(date)}
+							onChange={date => setSelectedDate(date as Date)}
 							dateFormat='dd/MM/yyyy'
 						/>
 					</label>
@@ -104,7 +105,7 @@ export default function EditHabit({
 							type='number'
 							className='habit-input w-14 mr-1 text-brand-grey'
 							min='0'
-							onChange={() => setSelectedDate(null)}
+							onChange={() => setSelectedDate(undefined)}
 						/>
 						<p className='text-brand-grey'>occurences</p>
 					</label>

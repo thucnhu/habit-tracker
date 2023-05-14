@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import EditHabit from './EditHabit'
-
+import { HabitCardProps } from './types'
 
 export default function HabitCard({
 	name,
@@ -10,7 +10,7 @@ export default function HabitCard({
 	hours,
 	minutes,
 	interval,
-}) {
+}: HabitCardProps) {
 	const [isOpen, setIsOpen] = useState(false)
 
 	return (

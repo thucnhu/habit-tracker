@@ -36,6 +36,7 @@
     "typescript": "^5.0.4"
   },
   "devDependencies": {
+    "@types/react-datepicker": "^4.11.2",
     "autoprefixer": "^10.4.0",
     "gh-pages": "^5.0.0",
     "markdown-notes-tree": "^1.12.0",
