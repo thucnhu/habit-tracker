@@ -7,5 +7,7 @@ import { AuthContext } from '../context/authContext'
 export default function PrivateRoute() {
 	const { user } = useContext(AuthContext)
 
-	return user ? <Outlet /> : <Navigate to={LOG_IN} />
+	if (!user || (user && !user.emailVerified)) return <Navigate to={LOG_IN} />
+
+	return <Outlet />
 }
