@@ -1,10 +1,10 @@
 export interface HabitCardProps {
   name: string
   chickens: number
-  percentage: number
-  days: number
-  hours: number
-  minutes: number
+  percentage: string
+  days: string
+  hours: string
+  minutes: string
   interval: string
 }
 

@@ -12,6 +12,7 @@ import {
 	sendPasswordResetEmail,
 	User,
 } from 'firebase/auth'
+import { DASHBOARD } from '../constants/routes'
 
 interface AuthValue {
 	user: User,
@@ -69,6 +70,7 @@ function AuthContextProvider({ children }: PropsWithChildren) {
 	async function login(email: string, password: string) {
 		try {
 			await signInWithEmailAndPassword(auth, email, password)
+			window.location.replace(DASHBOARD)
 		} catch (err: any) {
 			console.error(err.message)
 			if (err.message === 'Firebase: Error (auth/user-not-found).')

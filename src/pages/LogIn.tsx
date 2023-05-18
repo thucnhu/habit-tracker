@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-import { SIGN_UP, DASHBOARD, RESET_PASSWORD } from '../constants/routes'
+import { SIGN_UP, RESET_PASSWORD } from '../constants/routes'
 import { AuthContext } from '../context/authContext'
 
 export default function LogIn() {
@@ -9,12 +9,10 @@ export default function LogIn() {
 	const [password, setPassword] = useState('')
 
 	const { login } = useContext(AuthContext)
-	const navigate = useNavigate()
 
 	async function handleLogIn(event: React.FormEvent<HTMLFormElement>) {
 		event.preventDefault()
 		login(email, password)
-		navigate(DASHBOARD)
 	}
 
 	return (
