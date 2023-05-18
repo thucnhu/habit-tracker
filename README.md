@@ -2,7 +2,7 @@
 
 A web app that helps users maintain and improve their habits using spaced-repetition reminder.
 
-Try out the app via this [link](https://habit-tracker-fuv.herokuapp.com/).
+Try out the app via this [link](https://thucnhu.github.io/habit-tracker).
 
 ## Getting started
 
